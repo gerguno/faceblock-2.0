@@ -37,8 +37,10 @@ angular.module('app').service('todoStorage', ['$timeout',
             var todo = {
                 id: id,
                 content: newContent,
+                color: '#F7F8FB',
                 hinted: false,
                 counter: 0,
+                trashesCounter: new Array(),
                 createdAt: new Date()
             };
 
@@ -60,12 +62,6 @@ angular.module('app').service('todoStorage', ['$timeout',
 
         this.remove = function(todo) {
             this.data.splice(this.data.indexOf(todo), 1);
-            this.sync();
-            this.addTracker();
-        }
-
-        this.removeAll = function() {
-            this.data = [];
             this.sync();
             this.addTracker();
         }

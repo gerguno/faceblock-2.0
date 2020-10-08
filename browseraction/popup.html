@@ -2,124 +2,74 @@
 <html ng-app='app'>
 <head>
     <title>Faceblock</title>
-    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <script src="/analytics/analytics.js"></script>
     <meta charset="utf-8" />
 </head>
 <body ng-controller='todoCtrl'>
 
-    <div id="header" class='container'>
-        <div class="row">
-            <div class="col-xs-6">
-                <img src="/images/logo.png"/>
-            </div>
- 
-            <div class="col-xs-6">
-                <input id="switcher" type='checkbox' class="switcher pull-right" ng-checked='switcher' ng-click='toggleSwitcher()'/>
-            </div>
-        </div>
+    <div id="header">
+        <div>faceblock</div>
+            <input id="switcher" type='checkbox' class="switcher pull-right" ng-checked='switcher' ng-click='toggleSwitcher()'/>
     </div>    
         
 
-    <div id="add" class='container'>    
-        <div class='row'>
-            <div class='col-xs-12 text-center col-centered'>
-                <form id='todo-form' ng-submit='add()'>
-                    <div class="form-group">
-                        <input type='text' id='new-todo' ng-model='newContent' placeholder="What are you tired of?">
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div id="add">    
+        <form autocomplete="off" id='todo-form' ng-submit='add()'>
+            <input type='text' id='new-todo' ng-model='newContent' placeholder="type what to block here...">
+        </form>
     </div>    
 
-    <div id="alert" class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="alert alert-danger" ng-show="alert">
-                    <a href="#" class="close" ng-click="closeAlert()"></a>
-                    <strong>Oops! </strong>Add a word minimum 3 characters long.
+    <div id="alert">
+        <div ng-show="alert">
+            <a href="#" class="close" ng-click="closeAlert()"></a>
+            <strong>Oops! </strong>Add a word minimum 3 characters long.
+        </div>
+    </div>
+
+
+    <div id="empty" ng-show="todoList.length < 1">
+        <img src="/images/add.png">
+    </div>
+
+    <div id="values">
+        <div class='todo-item' ng-repeat='todo in todoList track by todo.id| orderBy: createdAt' ng-click="remove(todo)" ng-style="{'background-color': todo.color}">
+            <div class="todo-content">
+               {{todo.content}}
+            </div>
+
+            <div class="todo-searching" ng-show="todo.counter < 1">
+                 searching...
+            </div> 
+
+            <div class="todo-bottom" ng-show="todo.counter > 0">
+                <div class="todo-counter"> 
+                    {{todo.counter}}
+                </div>
+
+                <div class="todo-trashes">
+                    <div ng-repeat="trashes in todo.trashesCounter track by $index">
+                        <img ng-bind="trashes" src="/images/faceblock-trash.png" id="trash">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div id="empty" class="container" ng-show="todoList.length < 1">
-        <div class="row">
-            <div class="col-xs-8 text-center col-centered">
-                <img src="/images/add.png">
-                Add a topic you want to block
-            </div>
-        </div>  
-    </div>
-
-    <div id="list" class="container">
-        <div class='row' id="values">
-                <div class='todo-item col-xs-12 no-gutter col-centered' ng-repeat='todo in todoList track by todo.id| orderBy: createdAt'>
-                    <div class="todo-content col-xs-5">
-                       {{todo.content}}
-                    </div>
-
-                    <div class="todo-counter col-xs-4" ng-show="todo.counter > 0">
-                        <img src="/images/trash2.png" id="trash">&nbsp; 
-                        {{todo.counter}} posts
-                    </div>
-
-                     <div class="todo-counter col-xs-4" ng-show="todo.counter < 1">
-                        <img src="/images/shrug.png" id="trash" class="no-posts">&nbsp; 
-                        no posts
-                    </div>
-
-                    <div class="todo-cross col-xs-1">
-                        <a id="btn-remove-todo" class='btn-remove-todo pull-right' ng-click='remove(todo)' href="#"></a>
-
-                    </div>    
-                </div>   
-        </div>
+        </div>   
     </div>    
 
-    <div id="remove" class="container">    
-        <div class='row'>
-            <div class="col-xs-12 col-centered">
-                    <a id="btn-remove-all"
-                        ng-click='removeAll()'
-                        class='pull-right'
-                        ng-show="todoList.length > 0"
-                        href="#"
-                        >
-                        Clear list
-                    </a>
-            </div>        
-        </div>
-    </div>
+    <div id="footer">    
+        <div id="text">Share your impression</div>
 
-
-    <div id="about" class="container">    
-        <div class='row'>
-            <div id="footer" class="col-xs-12 col-centered">
-                <hr>
-                <div id="text">
-                    <p>Share your impression</p>
-                </div>
-
-                <div id="social">
-                    <!-- 
-                        EDIT LINKS
-                        http://logicum.co/creating-custom-share-buttons-facebook-twitter-google/ 
-                    -->
-                    <a id="btn-facebook" href="#" ng-click="linkFacebook()"> <i class="fa fa-facebook-square big"></i> </a> 
-                    <a id="btn-twitter" href="#" ng-click="linkTwitter()"> <i class="fa fa-twitter-square big"></i> </a>
-                    <a id="btn-google-plus" href="https://plus.google.com/share?url=https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph" target="_blank"> <i class="fa fa-google-plus-square big"></i> </a> 
-                </div>
-            </div>
+        <div id="social">
+            <!-- 
+                EDIT LINKS
+                http://logicum.co/creating-custom-share-buttons-facebook-twitter-google/ 
+            -->
+            <a href="#" ng-click="linkFacebook()"> <img src="/images/facebook.png" alt=""> </a> 
+            <a href="#" ng-click="linkTwitter()"> <img src="/images/twitter.png" alt=""> </a>
         </div>
     </div>
 
     <script type="text/javascript" src="/lib/angular/angular.js"></script>
-    <script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
     <script type="text/javascript" src="/js/todoCtrl.js"></script>
     <script type="text/javascript" src="/js/todoStorage.js"></script>

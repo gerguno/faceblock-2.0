@@ -3,8 +3,6 @@ getToggleValue(function(switcher){
 	toggleProgram(switcher);
 });
 
-
-
 function toggleProgram(tvalue) {
 
 	(tvalue) ? programOn() : programOff();
@@ -13,19 +11,8 @@ function toggleProgram(tvalue) {
 			console.log('Faceblock is on');
 
 			var counter = 0,
-				countedValue = [];
-
-			function getAllElementsWithAttribute(attribute, value) {
-			  var matchingElements = [];
-			  var allElements = document.querySelectorAll('div');
-			  for (var i = 0, n = allElements.length; i < n; i++) {
-			    if (allElements[i].getAttribute(attribute) === value) {
-			      // Element exists with attribute. Add to array.
-			      matchingElements.push(allElements[i]);
-			    }
-			  }
-			  return matchingElements;
-			}
+				countedValue = [],
+				colors = ['#CFD0C1', '#9E96F9', '#F3A173', '#E8A17A', '#BBBDC8', '#F5D86F', '#BAAEA0', '#8CB8C6', '#B9ACEA'];
 
 			function capitalizeFirstLetter(string) {
 			    return string.charAt(0).toUpperCase() + string.slice(1);
@@ -36,9 +23,9 @@ function toggleProgram(tvalue) {
 			}
 
 			function getPosts() {
-				var posts = getAllElementsWithAttribute("data-testid", "fbfeed_story");
+				var posts = document.querySelectorAll('[data-pagelet^="FeedUnit"]');
 				if (posts.length === 0) {
-					posts = document.querySelectorAll('._5jmm');
+					posts = document.querySelectorAll('.du4w35lb');
 					if (posts.length === 0) {
 						posts = 0;
 						return posts;
@@ -68,30 +55,46 @@ function toggleProgram(tvalue) {
 											if (counter > 0) {	
 												todocopy = keys.todo;
 
-												// Set counter
+												// Update counter
 												todocopy[l]['counter'] += counter;
 
-												// Set hinted
-												todocopy[l]['hinted'] = true; 
+												// // Set color step-by-step
+												// todocopy[l]['color'] = colors[colorsCounter];
+												// window.colorsCounter += 1;
 
-												//for debugging
-												removeName = todocopy[l]['content'];
-												hinted = todocopy[l]['hinted'];
 
-												// Save counter and hinted
+												// Set color random
+												if (todocopy[l]['color'] == '#F7F8FB') {
+													(function setColor() {
+														todocopy[l]['color'] = colors[Math.floor(Math.random() * colors.length)];
+
+														// Avoid color tautologies
+														if (todocopy[l-1]) {
+															if (todocopy[l]['color'] == todocopy[l-1]['color']) {
+																setColor();
+															} else {
+																if (todocopy[l-2]) {
+																	if (todocopy[l]['color'] == todocopy[l-2]['color']) {
+																		setColor();
+																	} else {
+																		if (todocopy[l-3]) {
+																			if (todocopy[l]['color'] == todocopy[l-3]['color']) {
+																				setColor();
+																			}
+																		}
+																	}		
+																}	
+															} 
+														}
+													})();
+												}
+
+												// Update trashesCounter
+												todocopy[l]['trashesCounter'] = todocopy[l]['trashesCounter'].concat(new Array(counter));
+
+												// SAVE TO STORAGE
 												chrome.storage.sync.set({ todo: todocopy });
-
-												// Remove hinted
-												removeHinted(todocopy,l);
-
-												function removeHinted(array,l) {
-							                        setTimeout(function() {
-							                        	var hintedarr = array;
-							                        	hintedarr[l]['hinted'] = false;
-							                            chrome.storage.sync.set({ todo: hintedarr });							                   
-							                        }, 1000);
-							                    }
-
+												console.log(todocopy);
 											}
 										});
 								}	
@@ -126,7 +129,6 @@ function toggleProgram(tvalue) {
 
 	function programOff() {
 		console.log('Faceblock is off');
- 
 	}
 }	
 
@@ -152,6 +154,7 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 		case "switcher-toggle":
 			getToggleValue(function(switcher){
 				toggleProgram(switcher);
+				console.log(switcher);
     		});
 		break;
 	}
@@ -162,6 +165,7 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 		case "clean":
 			getToggleValue(function(switcher){
 				toggleProgram(switcher);
+				console.log(switcher);
     		});
 		break;
 	}

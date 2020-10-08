@@ -39,10 +39,6 @@ angular.module('app').controller('todoCtrl', function ($scope, todoStorage) {
         todoStorage.remove(todo);
     }
 
-    $scope.removeAll = function() {
-        todoStorage.removeAll();
-    }
-
     $scope.toggleSwitcher = function() {
         todoStorage.toggleSwitcher();
     }
