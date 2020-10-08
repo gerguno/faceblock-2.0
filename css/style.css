@@ -60,7 +60,7 @@ body {
 	width: 220px;
 	height: 220px;
 	margin: 170px auto;
-	padding: 7px 0 0 10px;
+	padding: 6px 0 0 10px;
 	font-size: 26px;
 	line-height: 26px;
     font-weight: normal;
@@ -165,8 +165,7 @@ body {
 */
 #values {
 	position: relative;
-	margin: 44px 0 0 0;
-	padding: 0 0 78px 0;
+	margin: 44px 0 78px 0;
 	z-index: 2;	
 }
 
