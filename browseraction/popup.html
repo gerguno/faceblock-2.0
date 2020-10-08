@@ -7,26 +7,24 @@
     <meta charset="utf-8" />
 </head>
 <body ng-controller='todoCtrl'>
+   
+    <div id="alert" ng-show="alert">
+        <div id="alert-container">
+            <div id="alert-text">Oops! <br> Add a word minimum 4 characters long</div>
+            <div id="alert-button" ng-click="closeAlert()">ok</div>         
+        </div>
+    </div>
 
     <div id="header">
         <div>faceblock</div>
             <input id="switcher" type='checkbox' class="switcher pull-right" ng-checked='switcher' ng-click='toggleSwitcher()'/>
     </div>    
         
-
     <div id="add">    
         <form autocomplete="off" id='todo-form' ng-submit='add()'>
             <input type='text' id='new-todo' ng-model='newContent' placeholder="type what to block here...">
         </form>
     </div>    
-
-    <div id="alert">
-        <div ng-show="alert">
-            <a href="#" class="close" ng-click="closeAlert()"></a>
-            <strong>Oops! </strong>Add a word minimum 3 characters long.
-        </div>
-    </div>
-
 
     <div id="empty" ng-show="todoList.length < 1">
         <img src="/images/add2.png">

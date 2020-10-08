@@ -12,7 +12,7 @@ function toggleProgram(tvalue) {
 
 			var counter = 0,
 				countedValue = [],
-				colors = ['#CFD0C1', '#9E96F9', '#F3A173', '#E8A17A', '#BBBDC8', '#F5D86F', '#BAAEA0', '#8CB8C6', '#B9ACEA'];
+				colors = ['#CEB4B4', '#CFD0C1', '#9E96F9', '#E8A17A', '#BBBDC8', '#F5D86F', '#BAAEA0', '#8CB8C6', '#C7ACEA'];
 
 			function capitalizeFirstLetter(string) {
 			    return string.charAt(0).toUpperCase() + string.slice(1);
