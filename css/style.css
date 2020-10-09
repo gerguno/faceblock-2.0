@@ -76,8 +76,8 @@ body {
 }
 
 #alert-button {
-	margin: 67px 11px 0 0;
-	padding: 7px 9px;
+	margin: 69px 11px 0 0;
+	padding: 6px 7px;
 	background: #CFD0C1;
 	box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.5), inset -2px -2px 5px rgba(0, 0, 0, 0.15);
 	border-radius: 10px;		
@@ -95,7 +95,7 @@ body {
 #header {
 	display: flex;
 	height: 30px;
-	padding: 2px 8px 0px 8px;
+	padding: 3px 8px 0px 8px;
 	font-size: 26px;
     font-weight: normal;
     letter-spacing: -0.06em;
@@ -170,7 +170,6 @@ body {
 }
 
 .todo-item {
-	display: flex;
 	padding: 11px 0 9px 0;
 	margin: 0 auto;
 	width: 316px;
@@ -197,7 +196,7 @@ body {
 }
 
 .todo-item:hover .todo-content {
-	visibility: hidden;
+	display: none;
 }
 
 .todo-item:hover .todo-searching {
@@ -208,24 +207,27 @@ body {
 	visibility: hidden;
 }
 
-
 .todo-item:hover::before {
+	display: flex;
 	content:"delete";
-	margin: 3px 0 0 7px;
+	margin: 0 0 0 7px;
 	color: #E6E8EB;
-	width: 0;
 	font-size: 26px;
     font-weight: normal;
     letter-spacing: -0.06em;
-    line-height: 12px;
+    line-height: 17px;
 }
 
+
 .todo-content {
-	width: 0;
+	display: inline-block;
+	width: 50%;
 	padding: 0 0 0 10px;
 }
 
 .todo-searching {
+	display: inline-block;
+	float: right;
 	margin: 0 0 0 auto;
 	padding: 0 11px 0 0;
 	color: #BBBDC8;
@@ -233,14 +235,17 @@ body {
 
 .todo-bottom {
 	display: flex;
+	align-items: flex-end;	
 	width: 100%;
-	padding: 30px 0 0 0;
-	margin: auto 0 0 0;
+	padding: 20px 0 0 0;
+/*	margin: auto 0 0 0;*/
 }
 
 .todo-counter {
-	margin: auto auto -10px 0;
+	float: left;
+	margin: auto 0 -10px 9px;
 	width: 50% !important;
+	height: 100%;
 	text-align: left;
 	font-family: 'FaceblockLight';
 	font-size: 56px;
@@ -249,11 +254,12 @@ body {
 }
 
 .todo-trashes {
+	float: right;
 	margin: auto 7px -3px auto;
 	display: flex;
 	flex-wrap: wrap-reverse;
 	flex-direction: row-reverse;
-	width: 50%;
+	width: 40%;
 	height: 100%;
 }
 
