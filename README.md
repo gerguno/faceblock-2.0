@@ -1,4 +1,4 @@
-## Faceblock - Block Facebook posts about stuff you don't like 
+## Faceblock 2.0 — Block Facebook posts about stuff you don't like 
 Faceblock is an extension for Google Chrome that blocks posts about stuff you don't like in your Facebook Newsfeed.
 
 ![Faceblock](https://cloud.githubusercontent.com/assets/4130138/13584305/95ea84ca-e4be-11e5-8ab1-5755269fe6aa.png)
