@@ -173,7 +173,7 @@ angular.module('app').service('todoStorage', ['$timeout',
 
             id       = "1654481754804604";
             link     = "&link="        + "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
-            picture  = "&picture="     + "https://36.media.tumblr.com/85db959bf2cfa1a3bb8bf988a568f5fa/tumblr_o1viorvcZg1s2gmlbo1_1280.png";
+            picture  = "&picture="     + "/Faceblock-Share.png";
             caption  = "&caption="     + "Faceblock";
             fullLink = "https://www.facebook.com/dialog/feed?app_id=" + id + link + name + caption + description + picture + "&redirect_uri=https://www.facebook.com";
             window.open(fullLink, '_blank');
