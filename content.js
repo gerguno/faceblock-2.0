@@ -3,7 +3,6 @@
 class App {
 	constructor() {
 		this.switcher = false
-		this.counter = 0
 		this.posts = []
 	}
 
