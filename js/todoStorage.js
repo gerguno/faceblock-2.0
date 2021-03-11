@@ -172,10 +172,11 @@ angular.module('app').service('todoStorage', ['$timeout',
             } 
 
             id       = "1654481754804604";
+            display  = "&display="     + "popup"; 
             link     = "&link="        + "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
-            picture  = "&picture="     + "https://raw.githubusercontent.com/gerguno/faceblock-2.0/master/promo/Faceblock-Share.png";
+            picture  = "&picture="     + "https://raw.githubusercontent.com/gerguno/faceblock-2.0/master/promo/Faceblock-Share-2.png";
             caption  = "&caption="     + "Faceblock";
-            fullLink = "https://www.facebook.com/dialog/feed?app_id=" + id + link + name + caption + description + picture + "&redirect_uri=https://www.facebook.com";
+            fullLink = "https://www.facebook.com/dialog/feed?app_id=" + id + display + link + name + caption + description + picture + "&redirect_uri=https://www.facebook.com";
             window.open(fullLink, '_blank');
         }
 
