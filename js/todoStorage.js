@@ -222,9 +222,3 @@ angular.module('app').service('todoStorage', ['$timeout',
 
 
 }]);
-
-
-
-
-//отримати і записувати дані: через this.data[i]['id'], this.data[i]['counter'].
-//синхронізувати 
