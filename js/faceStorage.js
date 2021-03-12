@@ -1,4 +1,4 @@
-angular.module('app').service('todoStorage', ['$timeout',
+angular.module('app').service('faceStorage', ['$timeout',
     function ($timeout) {
         var _this = this;
         this.data = [];
@@ -6,9 +6,9 @@ angular.module('app').service('todoStorage', ['$timeout',
         this.alert = false;
 
         this.findAll = function(callback) {
-            chrome.storage.sync.get('todo', function(keys) {
-                if (keys.todo != null) {
-                    _this.data = keys.todo;
+            chrome.storage.sync.get('face', function(keys) {
+                if (keys.face != null) {
+                    _this.data = keys.face;
                     for (var i=0; i<_this.data.length; i++) {
                         _this.data[i]['id'] = i + 1;
                     }
@@ -20,7 +20,7 @@ angular.module('app').service('todoStorage', ['$timeout',
         }
 
         this.sync = function() {
-            chrome.storage.sync.set({todo: this.data}, function() {
+            chrome.storage.sync.set({face: this.data}, function() {
                 console.log('Data is stored in Chrome storage');
             });
         }
@@ -34,7 +34,7 @@ angular.module('app').service('todoStorage', ['$timeout',
         this.add = function (newContent) {
             var id = this.data.length + 1,
                 newContent = newContent.replace("#", '');
-            var todo = {
+            var face = {
                 id: id,
                 content: newContent,
                 color: '#F7F8FB',
@@ -46,7 +46,7 @@ angular.module('app').service('todoStorage', ['$timeout',
 
             if (newContent.length > 3) {
                 this.alert = false;
-                this.data.push(todo);
+                this.data.push(face);
                 this.sync();
                 this.sendClean();
                 this.trackAdd(newContent);
@@ -60,8 +60,8 @@ angular.module('app').service('todoStorage', ['$timeout',
             this.addTracker();
         }
 
-        this.remove = function(todo) {
-            this.data.splice(this.data.indexOf(todo), 1);
+        this.remove = function(face) {
+            this.data.splice(this.data.indexOf(face), 1);
             this.sync();
             this.addTracker();
         }
@@ -198,8 +198,8 @@ angular.module('app').service('todoStorage', ['$timeout',
 
         // update this.data on chrome.storage change (counter change)
         chrome.storage.onChanged.addListener(function(changes, areaName) {
-            $timeout(_this.findAll(function(todo) {
-                _this.data = todo;
+            $timeout(_this.findAll(function(face) {
+                _this.data = face;
 
                 /* Hinted CSS Class Add*/                
                 if (_this.switcher) {

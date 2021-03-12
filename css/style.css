@@ -101,7 +101,7 @@ body {
     letter-spacing: -0.06em;
 }
 
-#new-todo {
+#new-face {
 	background: #E7E8EB;
 	color: #3B3B41;
 	border: none;
@@ -121,7 +121,7 @@ body {
 :-moz-placeholder           {color: #BBBDC8;}/* Firefox 18- */
 :-ms-input-placeholder      {color: #BBBDC8;}
 
-#new-todo:focus {
+#new-face:focus {
  	outline: 0 none;
 }
 
@@ -169,7 +169,7 @@ body {
 	z-index: 2;	
 }
 
-.todo-item {
+.face-item {
 	padding: 11px 0 9px 0;
 	margin: 0 auto;
 	width: 316px;
@@ -183,31 +183,31 @@ body {
 	border-radius: 10px;
 }
 
-.todo-item img {
+.face-item img {
 	width: 24px;
 	height: 26px;
 	margin: -4px 0 0 1px;
 }
 
-.todo-item:hover {
+.face-item:hover {
 	cursor: pointer;
 	background-color: #3B3B41 !important; 
 	box-shadow: none;
 }
 
-.todo-item:hover .todo-content {
+.face-item:hover .face-content {
 	display: none;
 }
 
-.todo-item:hover .todo-searching {
+.face-item:hover .face-searching {
 	visibility: hidden;
 }
 
-.todo-item:hover .todo-bottom {
+.face-item:hover .face-bottom {
 	visibility: hidden;
 }
 
-.todo-item:hover::before {
+.face-item:hover::before {
 	display: flex;
 	content:"delete";
 	margin: 0 0 0 7px;
@@ -219,13 +219,13 @@ body {
 }
 
 
-.todo-content {
+.face-content {
 	display: inline-block;
 	width: 50%;
 	padding: 0 0 0 10px;
 }
 
-.todo-searching {
+.face-searching {
 	display: inline-block;
 	float: right;
 	margin: 0 0 0 auto;
@@ -233,7 +233,7 @@ body {
 	color: #BBBDC8;
 }
 
-.todo-bottom {
+.face-bottom {
 	display: flex;
 	align-items: flex-end;	
 	width: 100%;
@@ -241,7 +241,7 @@ body {
 /*	margin: auto 0 0 0;*/
 }
 
-.todo-counter {
+.face-counter {
 	float: left;
 	margin: auto 0 -10px 9px;
 	width: 50% !important;
@@ -253,7 +253,7 @@ body {
 	color: #3B3B41;
 }
 
-.todo-trashes {
+.face-trashes {
 	float: right;
 	margin: auto 7px -3px auto;
 	display: flex;

@@ -56,11 +56,11 @@ chrome.storage.onChanged.addListener(function(changes, areaName) {
 });
 
 function getCount(callback) {      
-    chrome.storage.sync.get("todo", function (keys){ 
+    chrome.storage.sync.get("face", function (keys){
         var count = 0; 
-        if (keys.todo != null) {
-            for (i = 0; i < keys.todo.length; i++) {
-                count += keys.todo[i]['counter'];
+        if (keys.face != null) {
+            for (i = 0; i < keys.face.length; i++) {
+                count += keys.face[i]['counter'];
             }
         }    
         callback(count.toString());

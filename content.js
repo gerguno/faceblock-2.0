@@ -36,7 +36,6 @@ class App {
 				if (mutation.addedNodes.length > 0) {
 					if (mutation.addedNodes[0].attributes[0].name === "data-pagelet") {
 						this.posts.push(mutation.addedNodes[0])
-						console.log(this.posts)
 						this.removePosts()
 					}
 				}
@@ -52,7 +51,6 @@ class App {
 			if (p.innerHTML.toLowerCase().includes(keyword)) {
 				p.remove()
 				this.posts.splice(index, 1)
-				// console.log('DELETED!!!!!!!!!!!!!!!!')
 				counter++
 			}
 		})
@@ -60,28 +58,28 @@ class App {
 	}
 
 	removePosts() {
-		chrome.storage.sync.get("todo", keys => {
-			if (keys.todo != null) {
-				keys.todo.map((t, i) => {
+		chrome.storage.sync.get("face", keys => {
+			if (keys.face != null) {
+				keys.face.map((t, i) => {
 					this.removeByKey(t['content'], counter => {
 						if (counter > 0) {
-							let todocopy = keys.todo;
-							todocopy[i]['counter'] += counter;
+							let facecopy = keys.face;
+							facecopy[i]['counter'] += counter;
 
 							const colors = ['#CEB4B4', '#CFD0C1', '#9E96F9', '#E8A17A', '#BBBDC8', '#F5D86F', '#BAAEA0', '#8CB8C6', '#C7ACEA']
-							if (todocopy[i]['color'] === '#F7F8FB') {
+							if (facecopy[i]['color'] === '#F7F8FB') {
 								(function setColor() {
-									todocopy[i]['color'] = colors[Math.floor(Math.random() * colors.length)];
-									if (todocopy[i-1]) {
-										if (todocopy[i]['color'] === todocopy[i-1]['color']) {
+									facecopy[i]['color'] = colors[Math.floor(Math.random() * colors.length)];
+									if (facecopy[i-1]) {
+										if (facecopy[i]['color'] === facecopy[i-1]['color']) {
 											setColor();
 										} else {
-											if (todocopy[i-2]) {
-												if (todocopy[i]['color'] === todocopy[i-2]['color']) {
+											if (facecopy[i-2]) {
+												if (facecopy[i]['color'] === facecopy[i-2]['color']) {
 													setColor();
 												} else {
-													if (todocopy[i-3]) {
-														if (todocopy[i]['color'] === todocopy[i-3]['color']) {
+													if (facecopy[i-3]) {
+														if (facecopy[i]['color'] === facecopy[i-3]['color']) {
 															setColor();
 														}
 													}
@@ -91,8 +89,8 @@ class App {
 									}
 								})();
 							}
-							todocopy[i]['trashesCounter'] = todocopy[i]['trashesCounter'].concat(new Array(counter));
-							chrome.storage.sync.set({ todo: todocopy });
+							facecopy[i]['trashesCounter'] = facecopy[i]['trashesCounter'].concat(new Array(counter));
+							chrome.storage.sync.set({ face: facecopy });
 						}
 					})
 				})
