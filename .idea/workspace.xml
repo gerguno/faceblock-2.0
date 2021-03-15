@@ -25,17 +25,21 @@
     <list default="true" id="a34ec569-c864-4f75-86c4-95bb053679ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/background.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browseraction/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/browseraction/popup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/todoCtrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/faceCtrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/todoStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/faceStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/faceStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/faceStorage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,6 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -62,7 +67,9 @@
       <workItem from="1603645723517" duration="221000" />
       <workItem from="1613068237136" duration="158000" />
       <workItem from="1615481528743" duration="363000" />
-      <workItem from="1615483039525" duration="22289000" />
+      <workItem from="1615483039525" duration="23231000" />
+      <workItem from="1615559593199" duration="2904000" />
+      <workItem from="1615573269660" duration="12568000" />
     </task>
     <servers />
   </component>
@@ -79,8 +86,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="597" y="444" key="SettingsEditor" timestamp="1615581531737">
+      <screen x="0" y="25" width="2560" height="1362" />
+    </state>
+    <state x="597" y="444" key="SettingsEditor/0.25.2560.1362@0.25.2560.1362" timestamp="1615581531737" />
     <state x="1448" y="336" width="670" height="676" key="search.everywhere.popup" timestamp="1615488490947">
       <screen x="0" y="25" width="2560" height="1362" />
     </state>

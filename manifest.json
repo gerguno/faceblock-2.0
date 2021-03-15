@@ -1,6 +1,6 @@
 {
   "name": "Faceblock",
-  "version": "2.0",
+  "version": "2.1",
   "manifest_version": 2,
   "offline_enabled": true,
   "description" : "Block Facebook posts about stuff you don't like",

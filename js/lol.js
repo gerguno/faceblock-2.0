@@ -1,8 +1,6 @@
-'use strict';
-
 angular.module('app').service('faceStorage', ['$timeout',
     function ($timeout) {
-        const _this = this;
+        var _this = this;
         this.data = [];
         this.switcher = true;
         this.alert = false;
@@ -11,7 +9,7 @@ angular.module('app').service('faceStorage', ['$timeout',
             chrome.storage.sync.get('face', function(keys) {
                 if (keys.face != null) {
                     _this.data = keys.face;
-                    for (let i=0; i<_this.data.length; i++) {
+                    for (var i=0; i<_this.data.length; i++) {
                         _this.data[i]['id'] = i + 1;
                     }
                     console.log(_this.data);
@@ -34,12 +32,13 @@ angular.module('app').service('faceStorage', ['$timeout',
         }
 
         this.add = function (newContent) {
-            const id = this.data.length + 1,
-                  nc = newContent.replace("#", '');
-            const face = {
+            var id = this.data.length + 1,
+                newContent = newContent.replace("#", '');
+            var face = {
                 id: id,
-                content: nc,
+                content: newContent,
                 color: '#F7F8FB',
+                hinted: false,
                 counter: 0,
                 trashesCounter: new Array(),
                 createdAt: new Date()
@@ -70,11 +69,11 @@ angular.module('app').service('faceStorage', ['$timeout',
         this.syncSwitcher = function() {
             chrome.storage.sync.set({switcher: this.switcher}, function() {
                 console.log('Data is stored in Chrome storage');
-            });        
+            });
         }
 
         this.findSwitcher = function(callback) {
-            chrome.storage.sync.get('switcher', function(keys) {  
+            chrome.storage.sync.get('switcher', function(keys) {
                 if (keys.switcher != null) {
                     _this.switcher = keys.switcher;
                 } else {
@@ -82,7 +81,7 @@ angular.module('app').service('faceStorage', ['$timeout',
                     _this.syncSwitcher();
                 }
                 callback(_this.switcher);
-            });      
+            });
         }
 
         this.sendSwitcher = function() {
@@ -94,13 +93,13 @@ angular.module('app').service('faceStorage', ['$timeout',
         this.toggleSwitcher = function() {
             if (_this.switcher) {
                 _this.switcher = false;
-            } else { 
-                _this.switcher = true; 
+            } else {
+                _this.switcher = true;
             }
             this.sendSwitcher();
             this.syncSwitcher();
             this.trackSwitcher();
-        } 
+        }
 
         this.addCounter = function(id, counter) {
             this.data[id]['counter'] += counter;
@@ -108,22 +107,22 @@ angular.module('app').service('faceStorage', ['$timeout',
         }
 
         this.trackAdd = function(newContent) {
-          const keyword =  'Keyword: ' + newContent;
-          _gaq.push(['_trackEvent', keyword, 'clicked']);         
+            var keyword =  'Keyword: ' + newContent;
+            _gaq.push(['_trackEvent', keyword, 'clicked']);
         }
 
         this.trackSwitcher = function() {
-          _gaq.push(['_trackEvent', 'Switcher', 'clicked']);         
-        }        
+            _gaq.push(['_trackEvent', 'Switcher', 'clicked']);
+        }
 
         this.trackButton = function(e) {
-          _gaq.push(['_trackEvent', e.target.id, 'clicked']);
-          console.log('send');
+            _gaq.push(['_trackEvent', e.target.id, 'clicked']);
+            console.log('send');
         };
 
         this.addTracker = function() {
-            const buttons = document.querySelectorAll('a');
-            for (let i = 0; i < buttons.length; i++) {
+            var buttons = document.querySelectorAll('a');
+            for (var i = 0; i < buttons.length; i++) {
                 buttons[i].addEventListener('click', _this.trackButton, false);
             }
         }
@@ -133,11 +132,11 @@ angular.module('app').service('faceStorage', ['$timeout',
         }
 
         this.keys = function() {
-            let keys = "";
+            var keys = "";
             if (this.data != null) {
                 if (_this.data.length > 0) {
                     if (_this.data.length > 1) {
-                        if (_this.data.length > 2) {  
+                        if (_this.data.length > 2) {
                             keys = this.toTitleCase(_this.data[0]['content']) + ", " + this.toTitleCase(_this.data[1]['content']) + " and " + this.toTitleCase(_this.data[2]['content']);
                         } else {
                             keys = this.toTitleCase(_this.data[0]['content']) + " and " + this.toTitleCase(_this.data[1]['content']);
@@ -145,61 +144,81 @@ angular.module('app').service('faceStorage', ['$timeout',
                     } else {
                         keys = this.toTitleCase(_this.data[0]['content']);
                     }
-                } 
-            }    
-            return keys;            
+                }
+            }
+            return keys;
         }
 
         this.amount = function() {
-            let amount = 0;
+            var amount = 0;
             if (this.data != null) {
-                for (let i=0; i<_this.data.length; i++) {
+                for (var i=0; i<_this.data.length; i++) {
                     amount += _this.data[i]['counter'];
                 }
-            }    
-            return amount;            
+            }
+            return amount;
         }
 
         this.linkFacebook = function() {
-            let amount = this.amount(),
+            var amount = this.amount(),
                 keys = this.keys();
 
-            if (amount !== 0) {
-                let name          = "&name="        + "I blocked " + keys + " in my Newsfeed thanks to Faceblock";
-                let description   = "&description=" +  amount + " post(s) about it were deleted. Now my Newsfeed is filled with the things I actually care about.";
+            if (amount != 0) {
+                name          = "&name="        + "I blocked " + keys + " in my Newsfeed thanks to Faceblock";
+                description   = "&description=" +  amount + " post(s) about it were deleted. Now my Newsfeed is filled with the things I actually care about.";
             }   else {
-                let name          = "&name="        + "I block posts about stuff I don't like in my Newsfeed thanks to Faceblock";
-                let description   = "&description=" + "Now my Newsfeed is filled with the things I actually care about.";
+                name          = "&name="        + "I block posts about stuff I don't like in my Newsfeed thanks to Faceblock";
+                description   = "&description=" + "Now my Newsfeed is filled with the things I actually care about.";
             }
 
-            let id       = "1654481754804604";
-            let display  = "&display="     + "popup";
-            let link     = "&link="        + "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
-            let  picture  = "&picture="     + "https://raw.githubusercontent.com/gerguno/faceblock-2.0/master/promo/Faceblock-Share-2.png";
-            let caption  = "&caption="     + "Faceblock";
-            let fullLink = "https://www.facebook.com/dialog/feed?app_id=" + id + display + link + name + caption + description + picture + "&redirect_uri=https://www.facebook.com";
+            id       = "1654481754804604";
+            display  = "&display="     + "popup";
+            link     = "&link="        + "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
+            picture  = "&picture="     + "https://raw.githubusercontent.com/gerguno/faceblock-2.0/master/promo/Faceblock-Share-2.png";
+            caption  = "&caption="     + "Faceblock";
+            fullLink = "https://www.facebook.com/dialog/feed?app_id=" + id + display + link + name + caption + description + picture + "&redirect_uri=https://www.facebook.com";
             window.open(fullLink, '_blank');
         }
 
         this.linkTwitter = function() {
-            let amount = this.amount(),
+            var amount = this.amount(),
                 keys = this.keys();
 
             if (amount != 0) {
-                let text          = "&text="    + "I blocked " + keys + " in my Facebook Newsfeed thanks to Faceblock. " + amount + " post(s) about it were deleted.";
+                text          = "&text="    + "I blocked " + keys + " in my Facebook Newsfeed thanks to Faceblock. " + amount + " post(s) about it were deleted.";
             }   else {
-                let text          = "&text="    + "I block posts about stuff I don't like in my Facebook Newsfeed thanks to Faceblock";
+                text          = "&text="    + "I block posts about stuff I don't like in my Facebook Newsfeed thanks to Faceblock";
             }
 
-            let link     = "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
-            let via      = "&link="        + "@pitonpitonpiton";
-            let fullLink = "https://twitter.com/intent/tweet?url=" + link + text + via;
+            link     = "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
+            via      = "&link="        + "@pitonpitonpiton";
+            fullLink = "https://twitter.com/intent/tweet?url=" + link + text + via;
             window.open(fullLink, '_blank');
         }
 
+        // update this.data on chrome.storage change (counter change)
         chrome.storage.onChanged.addListener(function(changes, areaName) {
             $timeout(_this.findAll(function(face) {
                 _this.data = face;
+
+                /* Hinted CSS Class Add*/
+                if (_this.switcher) {
+                    function removeHinted(i) {
+                        setTimeout(function() {
+                            selected.className = originalClasses;
+                        }, 1000);
+                    }
+                    for (var i=0; i<_this.data.length; i++) {
+                        if (_this.data[i]['hinted'] == true) {
+                            selected = document.querySelector('#values').children[i];
+                            originalClasses = selected.className;
+                            selected.className = originalClasses + " hinted";
+                            removeHinted(i);
+                        }
+                    }
+                }
             }));
         });
-}]);
+
+
+    }]);

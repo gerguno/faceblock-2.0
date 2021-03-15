@@ -2,31 +2,31 @@
 
 class App {
 	constructor() {
-		this.switcher = false
-		this.posts = []
+		this.switcher = false;
+		this.posts = [];
 	}
 
 	getSwitcher() {
 		chrome.storage.sync.get('switcher', keys => {
-			this.switcher = keys.switcher
-			this.switcher ? this.programOn() : this.programOff()
+			this.switcher = keys.switcher;
+			this.switcher ? this.programOn() : this.programOff();
 		})
 	}
 
 	programOn() {
-		console.log('Faceblock is on ;)')
-		this.getInitialPosts()
+		console.log('Faceblock is on ;)');
+		this.getInitialPosts();
 	}
 
 	programOff() {
-		console.log('Faceblock is off ;)')
+		console.log('Faceblock is off ;)');
 	}
 
 	getInitialPosts() {
 		let posts = document.querySelectorAll('[data-pagelet^=FeedUnit]');
 		this.posts = [...posts];
-		this.removePosts()
-		this.updatePosts()
+		this.removePosts();
+		this.updatePosts();
 	}
 
 	updatePosts() {
@@ -35,8 +35,8 @@ class App {
 			for (let mutation of mutationsList) {
 				if (mutation.addedNodes.length > 0) {
 					if (mutation.addedNodes[0].attributes[0].name === "data-pagelet") {
-						this.posts.push(mutation.addedNodes[0])
-						this.removePosts()
+						this.posts.push(mutation.addedNodes[0]);
+						this.removePosts();
 					}
 				}
 			}
@@ -49,11 +49,11 @@ class App {
 		let counter = 0;
 		this.posts.map((p, index) => {
 			if (p.innerHTML.toLowerCase().includes(keyword)) {
-				p.remove()
-				this.posts.splice(index, 1)
-				counter++
+				p.remove();
+				this.posts.splice(index, 1);
+				counter++;
 			}
-		})
+		});
 		callback(counter);
 	}
 
@@ -99,18 +99,18 @@ class App {
 	}
 
 	start() {
-		this.getSwitcher()
+		this.getSwitcher();
 	}
 }
 
-let Faceblock = new App()
-Faceblock.start()
+let Faceblock = new App();
+Faceblock.start();
 
 
 chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 	switch(message.type) {
 		case "switcher-toggle":
-			Faceblock.start()
+			Faceblock.start();
 		break;
 	}
 });
@@ -118,8 +118,12 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 	switch(message.type) {
 		case "clean":
-			Faceblock.start()
-		break;
+			Faceblock.start();
+			break;
 	}
 });
+
+
+
+
 
