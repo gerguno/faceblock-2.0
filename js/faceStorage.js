@@ -118,7 +118,6 @@ angular.module('app').service('faceStorage', ['$timeout',
 
         this.trackButton = function(e) {
           _gaq.push(['_trackEvent', e.target.id, 'clicked']);
-          console.log('send');
         };
 
         this.addTracker = function() {
