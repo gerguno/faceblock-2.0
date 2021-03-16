@@ -196,6 +196,7 @@ angular.module('app').service('faceStorage', ['$timeout',
             window.open(fullLink, '_blank');
         }
 
+        //Update _this.data on chrome.storage change
         chrome.storage.onChanged.addListener(function(changes, areaName) {
             $timeout(_this.findAll(function(face) {
                 _this.data = face;

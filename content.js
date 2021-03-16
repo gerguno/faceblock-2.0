@@ -70,23 +70,13 @@ class App {
 							if (facecopy[i]['color'] === '#F7F8FB') {
 								(function setColor() {
 									facecopy[i]['color'] = colors[Math.floor(Math.random() * colors.length)];
-									if (facecopy[i-1]) {
-										if (facecopy[i]['color'] === facecopy[i-1]['color']) {
-											setColor();
-										} else {
-											if (facecopy[i-2]) {
-												if (facecopy[i]['color'] === facecopy[i-2]['color']) {
-													setColor();
-												} else {
-													if (facecopy[i-3]) {
-														if (facecopy[i]['color'] === facecopy[i-3]['color']) {
-															setColor();
-														}
-													}
-												}
-											}
-										}
-									}
+									facecopy[i-1] && (facecopy[i]['color'] === facecopy[i-1]['color'])
+										? setColor()
+										: facecopy[i-2] && (facecopy[i]['color'] === facecopy[i-2]['color'])
+											? setColor()
+											: facecopy[i-3] && (facecopy[i]['color'] === facecopy[i-3]['color'])
+											? setColor()
+											: ''
 								})();
 							}
 							facecopy[i]['trashesCounter'] = facecopy[i]['trashesCounter'].concat(new Array(counter));
