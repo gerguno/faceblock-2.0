@@ -112,8 +112,3 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
 			break;
 	}
 });
-
-
-
-
-
