@@ -174,7 +174,7 @@ angular.module('app').service('faceStorage', ['$timeout',
             let id       = "1654481754804604";
             let display  = "&display="     + "popup";
             let link     = "&link="        + "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
-            let  picture  = "&picture="     + "https://raw.githubusercontent.com/gerguno/faceblock-2.0/master/promo/Faceblock-Share-2.png";
+            let picture  = "&picture="     + "https://raw.githubusercontent.com/gerguno/faceblock-2.0/master/promo/Faceblock-Share-2.png";
             let caption  = "&caption="     + "Faceblock";
             let fullLink = "https://www.facebook.com/dialog/feed?app_id=" + id + display + link + name + caption + description + picture + "&redirect_uri=https://www.facebook.com";
             window.open(fullLink, '_blank');
@@ -185,9 +185,9 @@ angular.module('app').service('faceStorage', ['$timeout',
                 keys = this.keys();
 
             if (amount != 0) {
-                let text          = "&text="    + "I blocked " + keys + " in my Facebook Newsfeed thanks to Faceblock. " + amount + " post(s) about it were deleted.";
+                let text = "&text=" + "I blocked " + keys + " in my Facebook Newsfeed thanks to Faceblock. " + amount + " post(s) about it were deleted.";
             }   else {
-                let text          = "&text="    + "I block posts about stuff I don't like in my Facebook Newsfeed thanks to Faceblock";
+                let text = "&text=" + "I block posts about stuff I don't like in my Facebook Newsfeed thanks to Faceblock";
             }
 
             let link     = "https://chrome.google.com/webstore/detail/faceblock/aljnhamaajogdndmfnedoodpoofadkph";
